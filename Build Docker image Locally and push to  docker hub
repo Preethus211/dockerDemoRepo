@@ -1,0 +1,215 @@
+PS C:\Users\hp> docker run --name mynginxdefault -p 80:80 -d nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+a670537bed70: Pull complete
+9f604dae09b2: Pull complete
+6fc242d221a6: Pull complete
+6e2ab1f3ef4e: Pull complete
+d322f1bf41d8: Pull complete
+a071113ac575: Pull complete
+c139fe92686d: Pull complete
+05a7d8870b4b: Download complete
+ca81da665177: Download complete
+Digest: sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da
+Status: Downloaded newer image for nginx:latest
+926cdd2f1610c6c7379017520797279f97037976583bc7ed8c6255d86c254691
+
+PS C:\Users\hp> docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                 NAMES
+926cdd2f1610   nginx     "/docker-entrypoint.…"   11 seconds ago   Up 10 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   mynginxdefault
+
+PS C:\Users\hp> docker images                                                                                                                            i Info →   U  In Use
+IMAGE          ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest   5ab5b0b01097        243MB         66.8MB    U
+
+PS C:\Users\hp> cd /Users/hp/OneDrive/Documents
+PS C:\Users\hp\OneDrive\Documents> mkdir nginx-image
+    Directory: C:\Users\hp\OneDrive\Documents
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        31-10-2026     08:40                nginx-image
+
+
+PS C:\Users\hp\OneDrive\Documents> cd nginx-image/
+PS C:\Users\hp\OneDrive\Documents\nginx-image> vi DockerFile
+vi : The term 'vi' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a
+path was included, verify that the path is correct and try again.
+At line:1 char:1
++ vi DockerFile
++ ~~
+    + CategoryInfo          : ObjectNotFound: (vi:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> vi dockerfile
+vi : The term 'vi' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a
+path was included, verify that the path is correct and try again.
+At line:1 char:1
++ vi dockerfile
++ ~~
+    + CategoryInfo          : ObjectNotFound: (vi:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> notepad Dockerfile
+PS C:\Users\hp\OneDrive\Documents\nginx-image> dir
+    Directory: C:\Users\hp\OneDrive\Documents\nginx-image
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---l        31-10-2026     08:43             48 Dockerfile.txt
+
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> notepad index.html
+PS C:\Users\hp\OneDrive\Documents\nginx-image> dir
+
+
+    Directory: C:\Users\hp\OneDrive\Documents\nginx-image
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---l        31-10-2026     08:43             48 Dockerfile.txt
+-a---l        31-10-2026     08:45             47 index.html
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                 NAMES
+926cdd2f1610   nginx     "/docker-entrypoint.…"   25 minutes ago   Up 25 minutes   0.0.0.0:80->80/tcp, [::]:80->80/tcp   mynginxdefault
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> dir
+    Directory: C:\Users\hp\OneDrive\Documents\nginx-image
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---l        31-10-2026     09:07             79 Dockerfile
+-a---l        31-10-2026     08:45             47 index.html
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker build -t preethus/mynginx_image:v1 .
+[+] Building 3.9s (7/7) FINISHED                                                                                                       docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                   0.0s
+ => => transferring dockerfile: 117B                                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest                                                                                        0.1s
+ => [internal] load .dockerignore                                                                                                                      0.0s
+ => => transferring context: 2B                                                                                                                        0.0s
+ => [internal] load build context                                                                                                                      0.1s
+ => => transferring context: 84B                                                                                                                       0.0s
+ => [1/2] FROM docker.io/library/nginx:latest@sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da                                  2.6s
+ => => resolve docker.io/library/nginx:latest@sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da                                  0.1s
+ => => extracting sha256:6fc242d221a673263eabd14a9ad9584d3177c96e5cb504c891497338e2f912f5                                                              1.3s
+ => => extracting sha256:a071113ac575190a0fee0c046bcf51632356f07419bdffaa55798f54e5b2e23b                                                              1.0s
+ => => extracting sha256:9f604dae09b216f6c87919d0e59d5a4ddc4387ef071cf63c645628f93808e37b                                                              0.0s
+ => => extracting sha256:6e2ab1f3ef4e0ea3bbe1d208dfa048969199e3dab99e93c051b7c2d09c8efb3e                                                              0.0s
+ => => extracting sha256:c139fe92686de21a8c49d9cb40415d1dddd95fbbee4d696cebe37693236fe6d4                                                              0.0s
+ => => extracting sha256:d322f1bf41d8e99dc47f550cbf85e79ca18bc45db12fd1b7a8b34bf79cbd7d5a                                                              0.0s
+ => => extracting sha256:a670537bed7086aeb8b663aad5e09cd584e19c6598cd2b6d905c5f2f2513938b                                                              0.0s
+ => [2/2] COPY index.html /usr/share/nginx/html/index.html                                                                                             0.6s
+ => exporting to image                                                                                                                                 0.3s
+ => => exporting layers                                                                                                                                0.1s
+ => => exporting manifest sha256:6661b236411e3180f3125dc33340960f4073cb2579b66c503b25ea2f7b0ddaea                                                      0.0s
+ => => exporting config sha256:241882cf5912383d61933beba2f10c612f4ecf13d2204f820299e3085ed98d90                                                        0.0s
+ => => exporting attestation manifest sha256:f7a3d62f9ab61f0a4f1b636d23d3bb9bdc941f3988cbd68cb877adb95dd59ff9                                          0.0s
+ => => exporting manifest list sha256:62162c91c1d2522a5417e80b9c73bccc878efc1534d965137264da7b801da768                                                 0.0s
+ => => naming to docker.io/preethus/mynginx_image:v1                                                                                                   0.0s
+ => => unpacking to docker.io/preethus/mynginx_image:v1                                                                                                0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/a02esipkmbrr26yyvtbaqdkrj
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker images                                                                                                                                      i Info →   U  In Use
+IMAGE                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest                5ab5b0b01097        243MB         66.8MB    U
+preethus/mynginx_image:v1   62162c91c1d2        241MB         63.9MB
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                 NAMES
+926cdd2f1610   nginx     "/docker-entrypoint.…"   38 minutes ago   Up 38 minutes   0.0.0.0:80->80/tcp, [::]:80->80/tcp   mynginxdefault
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker run -d -p 8081:80 --name mynginx preethus/mynginx_image:v1
+4eb930c02dcc05ff1599a01cfa60c72359f2c83cfe44b5d0f741fbc4779cfeb7
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+4eb930c02dcc   preethus/mynginx_image:v1   "/docker-entrypoint.…"   7 seconds ago    Up 5 seconds    0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   mynginx
+926cdd2f1610   nginx                       "/docker-entrypoint.…"   40 minutes ago   Up 40 minutes   0.0.0.0:80->80/tcp, [::]:80->80/tcp       mynginxdefault
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image>
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker stop mynginx
+mynginx
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker stop mynginxdefault
+mynginxdefault
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker container
+Usage:  docker container COMMAND
+
+Manage containers
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  exec        Execute a command in a running container
+  export      Export a container's filesystem as a tar archive
+  inspect     Display detailed information on one or more containers
+  kill        Kill one or more running containers
+  logs        Fetch the logs of a container
+  ls          List containers
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  prune       Remove all stopped containers
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  run         Create and run a new container from an image
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker container COMMAND --help' for more information on a command.
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps -a
+CONTAINER ID   IMAGE                       COMMAND                  CREATED             STATUS                      PORTS     NAMES
+4eb930c02dcc   preethus/mynginx_image:v1   "/docker-entrypoint.…"   27 minutes ago      Exited (0) 31 seconds ago             mynginx
+926cdd2f1610   nginx                       "/docker-entrypoint.…"   About an hour ago   Exited (0) 19 seconds ago             mynginxdefault
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker rm $(docker ps -a -q)
+4eb930c02dcc
+926cdd2f1610
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker images
+                                                                                                                                        i Info →   U  In Use
+IMAGE                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest                5ab5b0b01097        243MB         66.8MB
+preethus/mynginx_image:v1   62162c91c1d2        241MB         63.9MB
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker push preethus/mynginx_image:v1
+The push refers to repository [docker.io/preethus/mynginx_image]
+a071113ac575: Mounted from library/nginx
+6fc242d221a6: Mounted from library/nginx
+b64e4ed226c0: Pushed
+44136fa355b3: Pushed
+9f604dae09b2: Mounted from library/nginx
+6e2ab1f3ef4e: Mounted from library/nginx
+c139fe92686d: Mounted from library/nginx
+d322f1bf41d8: Mounted from library/nginx
+a670537bed70: Mounted from library/nginx
+dc5d72fe9b2e: Pushed
+v1: digest: sha256:62162c91c1d2522a5417e80b9c73bccc878efc1534d965137264da7b801da768 size: 856
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker rmi 5ab5b0b01097
+Untagged: nginx:latest
+Deleted: sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker images                                                                                                                                  i Info →   U  In Use
+IMAGE                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+preethus/mynginx_image:v1   62162c91c1d2        241MB         63.9MB
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker rmi 62162c91c1d2
+Untagged: preethus/mynginx_image:v1
+Deleted: sha256:62162c91c1d2522a5417e80b9c73bccc878efc1534d965137264da7b801da768
+
+PS C:\Users\hp\OneDrive\Documents\nginx-image> docker images                                                                                                                                    i Info →   U  In Use
+IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+
+//to check locally run loclhost:8081
