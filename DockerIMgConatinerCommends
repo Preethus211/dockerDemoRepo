@@ -1,0 +1,61 @@
+PS C:\Users\hp> docker --version
+Docker version 29.9.2, build a82e528
+
+PS C:\Users\hp> docker login
+Authenticating with existing credentials... [Username: preethus]
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+Login Succeeded
+
+PS C:\Users\hp> docker pull stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE
+1.0.0-RELEASE: Pulling from stacksimplify/dockerintro-springboot-helloworld-rest-api
+5e7e821feefb: Pull complete
+f910a506b6cb: Pull complete
+e7c96db7181b: Pull complete
+c2274a1a0e27: Pull complete
+Digest: sha256:8f3686fc7b2e456775b89dad269ab8292d59884966e408d4db58c321695d2809
+Status: Downloaded newer image for stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE
+docker.io/stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE
+
+PS C:\Users\hp> docker images                                                                                            i Info →   U  In Use
+IMAGE                                                                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE
+                                                                        8f3686fc7b2e        219MB         90.8MB
+
+PS C:\Users\hp> docker run --name app1 -p 80:8080 -d stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE
+52750c001eb99748ab5b430902bebd6463bd4f480f4c99984626fd000616479a
+
+PS C:\Users\hp> docker ps
+CONTAINER ID   IMAGE                                                                    COMMAND                  CREATED              STATUS              PORTS                                     NAMES
+52750c001eb9   stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE   "sh -c 'java $JAVA_O…"   About a minute ago   Up About a minute   0.0.0.0:80->8080/tcp, [::]:80->8080/tcp   app1
+
+PS C:\Users\hp> docker ps -q
+52750c001eb9
+
+PS C:\Users\hp> docker stop app1
+app1
+
+PS C:\Users\hp> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+PS C:\Users\hp> docker images                                                                                                                               i Info →   U  In Use
+IMAGE                                                                    ID             DISK USAGE   CONTENT SIZE   EXTRA
+stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE   8f3686fc7b2e        219MB         90.8MB    U
+
+PS C:\Users\hp> docker rmi 8f3686fc7b2e
+Error response from daemon: conflict: unable to delete 8f3686fc7b2e (must be forced) - image is being used by stopped container 52750c001eb9
+
+PS C:\Users\hp> docker rm 8f3686fc7b2e
+Error response from daemon: No such container: 8f3686fc7b2e
+
+PS C:\Users\hp> docker rm app1
+app1
+
+PS C:\Users\hp> docker rmi 8f3686fc7b2e
+Untagged: stacksimplify/dockerintro-springboot-helloworld-rest-api:1.0.0-RELEASE
+Deleted: sha256:8f3686fc7b2e456775b89dad269ab8292d59884966e408d4db58c321695d2809
+
+PS C:\Users\hp> docker image                                                                                                                     i Info →   U  In Use
+IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+
+PS C:\Users\hp> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
